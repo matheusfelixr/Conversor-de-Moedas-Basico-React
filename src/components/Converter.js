@@ -15,12 +15,13 @@ export default class Converter extends Component {
 
     converter(){
         let from_to  = `${this.props.firstCoin}_${this.props.secondCoin}`;
-        let url  = `http://free.currencyconverterapi.com/api/v5/convert?q=${from_to}&compact=y`;
+        let url  = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=key`;
+        
 
         fetch(url).then(res=>{
             return res.json()
         }).then(json=>{
-            let price = json[from_to].val;
+            let price = json[from_to];
             let secondCoin_valor = (parseFloat(this.state.firstCoin_valor * price).toFixed(2)) 
             this.setState({secondCoin_valor});
         })
